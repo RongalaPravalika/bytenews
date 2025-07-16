@@ -50,3 +50,4 @@ class ReadingHistory(models.Model):
     
     def _str_(self):
         return f"{self.user.username} read {self.article.title}"
+

@@ -6,11 +6,11 @@ class Category(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(blank=True)
 
-    def _str_(self):  # ✅ fixed
+    def __str__(self):  # ✅ fixed
         return self.name
 
     class Meta:
-        verbose_name_plural = "Categories"
+        ordering = ['name']
 
 class Article(models.Model):
     title = models.CharField(max_length=200)
@@ -34,11 +34,14 @@ class UserPreference(models.Model):
 
     def _str_(self):  # ✅ fixed
         return f"{self.user.username}'s preferences"
-
+    
 class ReadingHistory(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     article = models.ForeignKey(Article, on_delete=models.CASCADE)
     read_at = models.DateTimeField(auto_now_add=True)
 
-    def _str_(self):  # ✅ fixed
+    def __str__(self):
         return f"{self.user.username} read {self.article.title}"
+    class Meta:
+        unique_together = ('user', 'article')
+

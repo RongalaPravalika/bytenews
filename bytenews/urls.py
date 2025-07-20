@@ -7,6 +7,7 @@ from news.views import landing_page
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('users/', include('users.urls')),
 
     # ✅ Home page goes to landing page
     path('', landing_page, name='landing'),
@@ -20,6 +21,4 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(template_name='registration/logged_out.html'), name='logout'),
     path('logged_out/', TemplateView.as_view(template_name='registration/logged_out.html')),
 
-    # Optional: users routes if needed
-    path('users/', include('users.urls')),
 ]

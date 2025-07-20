@@ -35,6 +35,15 @@
                     <li class="nav-item">
                         <a class="nav-link {% if request.path == '/articles/' %}active{% endif %}" href="{% url 'home' %}">Articles</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == '/preferences/' %}active{% endif %}" href="{% url 'users:preferences' %}">Preferences</a>
+
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == '/History/' %}active{% endif %}" href="{% url 'reading_history' %}">History</a>
+
+                    </li>
+
                     <form class="navbar-brand" method="post" action="{% url 'logout' %}">
   {% csrf_token %}
   <button type="submit">Logout</button>
@@ -48,6 +57,7 @@
                             <a class="nav-link" href="{% url 'register' %}">Register</a>
                         </li>
                     {% endif %}
+                    
                 </ul>
             </div>
         </div>
@@ -55,6 +65,16 @@
 
     <!-- ✅ Page Content -->
     <main class="container mt-4">
+        {% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+      <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>
+        {{ message }}
+      </li>
+    {% endfor %}
+  </ul>
+{% endif %}
+
         {% block content %}
         {% endblock %}
     </main>

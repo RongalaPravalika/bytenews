@@ -1,6 +1,9 @@
 from django.views.generic import ListView, DetailView
 from django.db.models import Count, Q
 from .models import Article, Category
+from django.shortcuts import render
+from django.views.generic import TemplateView
+
 
 class ArticleListView(ListView):
     model = Article
@@ -39,3 +42,11 @@ class ArticleDetailView(DetailView):
     model = Article
     template_name = 'news/article_detail.html'
     context_object_name = 'article'
+
+class HomePageView(TemplateView):
+    template_name = 'news/homepage.html'
+
+
+def landing_page(request):
+    return render(request, 'landing.html') 
+

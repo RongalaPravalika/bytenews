@@ -17,6 +17,10 @@
                     <h6 class="card-subtitle mb-2 text-muted">
                         By {{ article.author }} on {{ article.publication_date|date:"F d, Y" }}
                     </h6>
+                    <h6 class="card-subtitle mb-2 text-muted">
+  By {{ article.author }} from {{ article.source }} on {{ article.publication_date|date:"F d, Y" }}
+</h6>
+
                     {% if article.category %}
                         <span class="badge bg-info">{{ article.category.name }}</span>
                     {% endif %}

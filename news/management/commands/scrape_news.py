@@ -15,19 +15,7 @@ class Command(BaseCommand):
         }
 
         total_articles_added = 0
-        # Attempt to auto-assign category based on title/content
-    category_assigned = False
-    categories = Category.objects.all()
-
-    for category in categories:
-        if category.name.lower() in article_data['title'].lower() or category.name.lower() in article_data['content'].lower():
-            article.categories.add(category)
-            category_assigned = True
-
-    if not category_assigned:
         general_category, _ = Category.objects.get_or_create(name='General')
-        article.categories.add(general_category)
-
 
         for source_name, feed_url in NEWS_SOURCES.items():
             self.stdout.write(f"Fetching from {source_name}...")

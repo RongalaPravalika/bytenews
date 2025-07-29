@@ -135,5 +135,10 @@ LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/login/'
 
 # Tells Django where the login page is (useful if login_required is used)
+
 LOGIN_URL = '/login/'
 LOGOUT_REDIRECT_URL = '/logged_out/'
+
+# Media file settings
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
